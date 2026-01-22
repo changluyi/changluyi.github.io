@@ -1,10 +1,21 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-<!-- P1-3: 添加main-content锚点供跳过导航使用 -->
-<main class="page-content" aria-label="Content" id="main-content">
-  <div class="wrapper">
-    {{ content }}
-  </div>
-</main>
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <!-- P1-3: 添加main-content锚点供跳过导航使用 -->
+    <main class="page-content" aria-label="Content" id="main-content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    {%- include footer.html -%}
+
+  </body>
+
+</html>
