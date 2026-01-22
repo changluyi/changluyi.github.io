@@ -29,6 +29,8 @@ github_username: yourgithub
 
 # Build settings
 theme: minima
+sass:
+  style: compressed
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
