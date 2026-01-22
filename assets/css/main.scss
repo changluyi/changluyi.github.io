@@ -4,118 +4,136 @@
 @import "minima";
 
 /* ===================================
-   P0-1 修复: 全局CSS过渡性能问题
+   P1-2 简化: 仅保留15个核心CSS变量
+   从60+个变量减少到核心设计token
    =================================== */
 
-/* ❌ 错误: 全局过渡导致LCP增加28% */
-/* * { transition: background-color 0.3s, color 0.3s; } */
+:root {
+  /* === 主色系 (2个) === */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
 
-/* ✅ 正确: 选择性过渡仅应用到主题相关元素 */
+  /* === 浅色模式 (5个) === */
+  --bg-body: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+
+  /* === 阅读优化 === */
+  --reading-width: 65ch;
+  --line-height-readable: 1.75;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* === 深色模式 (5个) === */
+    --bg-body: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-main: #f1f5f9;      /* WCAG AA: 4.6:1 ✅ */
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+  }
+}
+
+/* ===================================
+   P0-1 修复: 选择性CSS过渡(非全局)
+   =================================== */
+
 .theme-transition {
   transition: background-color 0.3s ease,
               color 0.3s ease,
               border-color 0.3s ease;
 }
 
-/* 应用到需要过渡的元素 */
-body,
-article,
-.page-content,
-.post-content,
-.footer-heading,
-.footer-col,
-.wrapper {
+body, article, .page-content, .post-content,
+.footer-heading, .footer-col, .wrapper {
   @extend .theme-transition;
 }
 
-/* 尊重用户减少动画偏好 */
 @media (prefers-reduced-motion: reduce) {
-  .theme-transition {
-    transition: none !important;
-  }
+  .theme-transition { transition: none !important; }
 }
 
 /* ===================================
-   P0-2 修复: 深色模式对比度
+   应用核心变量
    =================================== */
 
-:root {
-  /* 主色系 */
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
-
-  /* 浅色模式中性色 */
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f9fafb;
-  --color-text-primary: #111827;
-  --color-text-secondary: #6b7280;
-  --color-border: #e5e7eb;
-
-  /* 浅色模式阅读优化 */
-  --color-reading-bg: #ffffff;
-  --color-reading-text: #1f2937;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-primary: #0f172a;
-    --color-bg-secondary: #1e293b;
-    --color-text-primary: #f1f5f9;
-    --color-text-secondary: #94a3b8;
-    --color-border: #334155;
-
-    /* ✅ 修复: 保持高对比度确保WCAG AA合规 (4.6:1) */
-    --color-reading-bg: #1e293b;
-    --color-reading-text: #f1f5f9;
-  }
-}
-
-/* 应用颜色变量 */
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background-color: var(--bg-body);
+  color: var(--text-main);
 }
 
-/* 阅读区域优化 */
-article,
-.page-content,
-.post-content {
-  background-color: var(--color-reading-bg);
-  color: var(--color-reading-text);
-  line-height: 1.75; /* 提升长文可读性 */
-  max-width: 65ch;   /* 最佳阅读宽度 */
+article, .page-content, .post-content {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: var(--line-height-readable);
+  max-width: var(--reading-width);
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-/* 深色模式图片透明度调整 */
+/* 卡片和次要区域 */
+.site-nav, .footer-col, .sidebar {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+/* 深色模式图片优化 */
 @media (prefers-color-scheme: dark) {
   img {
     opacity: 0.85;
     transition: opacity 0.3s ease;
   }
+  img:hover { opacity: 1; }
+}
 
-  img:hover {
-    opacity: 1;
-  }
+/* ===================================
+   P1-3 可访问性增强
+   =================================== */
+
+/* 跳过导航链接(WCAG 2.1 2.4.1) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  z-index: 100;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* 焦点指示器(WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 改进的键盘导航 */
+a:focus, button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* ===================================
    响应式优化
    =================================== */
 
-/* 移动端优化 */
 @media (max-width: 768px) {
-  article,
-  .page-content,
-  .post-content {
+  article, .page-content, .post-content {
     padding: 1.5rem 1rem;
   }
 }
 
-/* 触摸目标最小尺寸 (WCAG AA 2.5.5) */
-button,
-a {
+/* 触摸目标最小尺寸(WCAG 2.5.5) */
+button, a {
   min-height: 48px;
   min-width: 48px;
   display: inline-flex;
@@ -127,8 +145,6 @@ a {
    性能优化: CSS Containment
    =================================== */
 
-article,
-.page-content,
-.footer-heading {
+article, .page-content, .site-header {
   contain: layout style;
 }
