@@ -1,16 +1,16 @@
 ---
 layout: page
-title: 技术分享
-permalink: /tech/
+title: 周报review
+permalink: /weekly-review/
 ---
 
 <div class="category-page">
   <header class="category-header">
-    <h2>技术分享</h2>
-    <p>聚焦可复用的实践经验、工程方法与工具链总结。</p>
+    <h2>周报review</h2>
+    <p>记录每周目标、进展、问题与改进点。</p>
   </header>
 
-  {% assign posts = site.categories["技术分享"] %}
+  {% assign posts = site.categories["周报review"] %}
   {% if posts and posts.size > 0 %}
   <div class="category-list">
     {% for post in posts %}
@@ -33,6 +33,6 @@ permalink: /tech/
     {% endfor %}
   </div>
   {% else %}
-  <p class="category-empty">暂无文章，稍后更新。</p>
+  <p class="category-empty">暂无周报，先从本周开始。</p>
   {% endif %}
 </div>

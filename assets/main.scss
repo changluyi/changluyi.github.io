@@ -1,11 +1,12 @@
 ---
 ---
 
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+SC:wght@400;500;600;700&display=swap");
 @import "minima";
 
 /* ===================================
-   2026 现代化 UI 设计系统
-   技术博客 - 渐变风格 + 微交互
+   简洁 UI 设计系统
+   技术博客 - 清爽排版 + 轻量交互
    =================================== */
 
 /* ===================================
@@ -13,30 +14,21 @@
    =================================== */
 
 :root {
-  /* === 主色系 - 2026 渐变趋势 === */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
-
-  /* 实色应用 */
-  --color-primary: #667eea;
-  --color-primary-hover: #764ba2;
-  --color-accent: #4facfe;
-  --color-success: #10b981;
+  /* === 主色系 === */
+  --color-primary: #6b8a96;
+  --color-primary-hover: #5a7681;
 
   /* === 浅色模式 === */
-  --bg-body: #fafbfc;
+  --bg-body: #f8f7f4;
   --bg-card: #ffffff;
-  --bg-card-hover: #f8f9fa;
-  --text-main: #111827;
-  --text-muted: #6b7280;
-  --border-color: #e2e8f0;
+  --bg-card-hover: #f2f3ef;
+  --text-main: #27323a;
+  --text-muted: #7b868c;
+  --border-color: #e2e6e1;
 
   /* 阴影系统 */
-  --shadow-sm: 0 2px 4px rgba(102, 126, 234, 0.05);
-  --shadow-md: 0 8px 16px rgba(102, 126, 234, 0.1);
-  --shadow-lg: 0 12px 24px rgba(102, 126, 234, 0.15);
+  --shadow-sm: none;
+  --shadow-md: none;
 
   /* 间距系统 */
   --spacing-xs: 0.5rem;
@@ -49,27 +41,25 @@
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;
-  --radius-full: 9999px;
 
   /* 阅读优化 */
-  --reading-width: 65ch;
+  --reading-width: 78ch;
   --line-height-readable: 1.75;
 }
 
 /* === 深色模式 === */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-body: #0f172a;
-    --bg-card: #1e293b;
-    --bg-card-hover: #334155;
-    --text-main: #f1f5f9;
-    --text-muted: #94a3b8;
-    --border-color: #334155;
+    --bg-body: #0f1212;
+    --bg-card: #171a1a;
+    --bg-card-hover: #1f2323;
+    --text-main: #f1f3f4;
+    --text-muted: #a3a8ac;
+    --border-color: #2a2f2f;
 
     /* 深色模式阴影 */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.5);
+    --shadow-sm: none;
+    --shadow-md: none;
   }
 }
 
@@ -80,8 +70,13 @@
 body {
   background-color: var(--bg-body);
   color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
+  font-family: "IBM Plex Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "IBM Plex Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
 }
 
 /* 选择性主题过渡 (性能优化) */
@@ -93,7 +88,7 @@ body {
 }
 
 body, article, .page-content, .post-content,
-.card, .btn, .site-nav {
+.site-nav {
   @extend .theme-transition;
 }
 
@@ -109,315 +104,128 @@ body, article, .page-content, .post-content,
 }
 
 /* ===================================
-   3. Hero 区域设计
-   =================================== */
-
-.hero-section {
-  position: relative;
-  background: var(--gradient-primary);
-  padding: 80px 20px;
-  margin-bottom: var(--spacing-xl);
-  overflow: hidden;
-
-  /* 渐变背景动画 */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-accent);
-    opacity: 0.1;
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease infinite;
-  }
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.hero-content {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 1;
-}
-
-.hero-title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: var(--spacing-md);
-  line-height: 1.2;
-
-  /* 渐变文字效果 */
-  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-
-  /* 淡入动画 */
-  animation: fadeInUp 0.8s ease-out;
-}
-
-.hero-description {
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  color: rgba(255, 255, 255, 0.95);
-  line-height: 1.7;
-  max-width: 600px;
-  margin: 0 auto var(--spacing-lg);
-  animation: fadeInUp 0.8s ease-out 0.2s backwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===================================
-   4. 按钮系统
-   =================================== */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 28px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 48px;
-  min-width: 48px;
-}
-
-/* 主按钮 (渐变背景) */
-.btn-primary {
-  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-  color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-  &:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-}
-
-/* 次要按钮 (透明背景) */
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-}
-
-/* ===================================
-   5. 卡片系统
-   =================================== */
-
-.card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-
-  /* 顶部渐变装饰条 */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary);
-
-    &::before {
-      opacity: 1;
-    }
-  }
-}
-
-/* Hero 区域内的分类卡片 */
-.category-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  text-decoration: none;
-
-  &::before {
-    background: var(--gradient-accent);
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
-  }
-
-  .card-icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .card-desc {
-    font-size: 0.95rem;
-    opacity: 0.9;
-  }
-}
-
-/* 分类卡片网格 */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-  animation: fadeInUp 0.8s ease-out 0.4s backwards;
-}
-
-/* ===================================
-   6. 文章卡片设计
+   3. 文章列表
    =================================== */
 
 .post-list {
-  display: grid;
-  gap: var(--spacing-lg);
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
 }
 
-.post-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  display: block;
+.post-list > li {
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
+  padding: 0.75rem 0;
+  box-shadow: none;
+  transition: border-color 0.2s ease;
+}
+
+.post-list > li:hover {
+  border-color: var(--color-primary);
+}
+
+.post-link {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
   text-decoration: none;
+}
 
-  /* 顶部渐变装饰 */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary);
-
-    &::before {
-      transform: scaleX(1);
-    }
-
-    .post-title {
-      color: var(--color-primary);
-    }
-  }
+.post-link:hover {
+  color: var(--color-primary);
 }
 
 .post-title {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-main);
   margin-bottom: var(--spacing-sm);
-  transition: color 0.3s ease;
 }
 
 .post-excerpt {
-  font-size: 1rem;
   color: var(--text-muted);
-  line-height: 1.6;
   margin-bottom: var(--spacing-md);
-
-  /* 限制为3行 */
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .post-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-  align-items: center;
-  font-size: 0.875rem;
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.post-list > li h2 {
+  margin: 0.25rem 0 0;
+  font-size: 1.05rem;
+}
+
+.post-list > li:last-child {
+  border-bottom: none;
+}
+
+.post-date {
   color: var(--text-muted);
 }
 
-.post-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 12px;
-  background: var(--gradient-primary);
-  color: #ffffff;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
+/* 分类页面列表 */
+.category-page {
+  margin-top: var(--spacing-md);
+}
+
+.category-header h2 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.category-header p {
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.category-list {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.category-item {
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.category-item:last-child {
+  border-bottom: none;
+}
+
+.category-empty {
+  color: var(--text-muted);
+  margin-top: var(--spacing-md);
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: var(--spacing-xs);
   font-weight: 600;
   text-decoration: none;
 }
 
-.post-date {
+.post-tags {
+  margin-top: var(--spacing-sm);
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--bg-card-hover);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
 }
 
 /* ===================================
@@ -426,24 +234,19 @@ body, article, .page-content, .post-content,
 
 a {
   color: var(--color-primary);
-  text-decoration: none;
-  position: relative;
+  text-decoration: underline;
+  text-decoration-color: rgba(107, 138, 150, 0.35);
+  text-underline-offset: 3px;
   transition: color 0.2s ease;
+}
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
-    transition: width 0.3s ease;
-  }
+a:hover {
+  color: var(--color-primary-hover);
+}
 
-  &:hover::after {
-    width: 100%;
-  }
+.post-link,
+.read-more {
+  text-decoration: none;
 }
 
 /* ===================================
@@ -456,12 +259,6 @@ a {
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.9);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: rgba(15, 23, 42, 0.9);
-  }
 }
 
 .site-nav a {
@@ -469,7 +266,8 @@ a {
   font-weight: 500;
   padding: 8px 16px;
   border-radius: var(--radius-sm);
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  text-decoration: none;
 
   &:hover {
     background-color: var(--bg-card-hover);
@@ -482,23 +280,11 @@ a {
    =================================== */
 
 .section-title {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  margin-bottom: var(--spacing-lg);
-  position: relative;
-  padding-bottom: var(--spacing-sm);
-
-  /* 底部渐变装饰线 */
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
-  }
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* ===================================
@@ -509,8 +295,7 @@ a {
   margin: var(--spacing-xl) 0;
   border: none;
   height: 1px;
-  background: var(--gradient-primary);
-  opacity: 0.2;
+  background: var(--border-color);
 }
 
 /* ===================================
@@ -523,7 +308,7 @@ a {
   top: -100%;
   left: 0;
   padding: 12px 24px;
-  background: var(--gradient-primary);
+  background: var(--color-primary);
   color: #ffffff;
   text-decoration: none;
   z-index: 1000;
@@ -547,17 +332,6 @@ a {
    12. 响应式设计
    =================================== */
 
-/* 平板设备 */
-@media (max-width: 1023px) {
-  .hero-section {
-    padding: 60px 32px;
-  }
-
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* 移动设备 */
 @media (max-width: 767px) {
   :root {
@@ -565,49 +339,8 @@ a {
     --spacing-xl: 2rem;
   }
 
-  .hero-section {
-    padding: 60px 20px;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-description {
-    font-size: 1rem;
-  }
-
-  .category-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .btn {
-    width: 100%;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .post-card {
-    padding: var(--spacing-md);
-  }
-
   .post-title {
     font-size: 1.25rem;
-  }
-
-  .section-title::after {
-    width: 40px;
-  }
-}
-
-/* 大屏幕优化 */
-@media (min-width: 1200px) {
-  .hero-section {
-    padding: 100px 20px;
-  }
-
-  .post-list {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -615,13 +348,51 @@ a {
    13. 文章内容优化
    =================================== */
 
-article, .page-content, .post-content {
-  background-color: var(--bg-body);
+article {
   color: var(--text-main);
+}
+
+.post-content {
+  background-color: var(--bg-body);
   line-height: var(--line-height-readable);
-  max-width: var(--reading-width);
+  max-width: 100%;
   margin: 0 auto;
   padding: var(--spacing-lg);
+}
+
+.post-content h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.post-content h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.post-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.page-content {
+  padding: var(--spacing-lg) 0;
+}
+
+.wrapper {
+  max-width: 1200px;
+  padding: 0 24px;
 }
 
 /* 代码块优化 */
@@ -638,8 +409,7 @@ pre {
 
 /* 引用块优化 */
 blockquote {
-  border-left: 4px solid;
-  border-image: var(--gradient-primary) 1;
+  border-left: 3px solid var(--color-primary);
   padding-left: var(--spacing-md);
   margin: var(--spacing-lg) 0;
   font-style: italic;
@@ -647,20 +417,7 @@ blockquote {
 }
 
 /* ===================================
-   14. 页脚优化
-   =================================== */
-
-.site-footer {
-  background-color: var(--bg-card);
-  border-top: 1px solid var(--border-color);
-  margin-top: var(--spacing-xl);
-  padding: var(--spacing-lg) var(--spacing-md);
-  text-align: center;
-  color: var(--text-muted);
-}
-
-/* ===================================
-   15. 深色模式图片优化
+   14. 深色模式图片优化
    =================================== */
 
 @media (prefers-color-scheme: dark) {
@@ -675,54 +432,20 @@ blockquote {
 }
 
 /* ===================================
-   16. 性能优化: CSS Containment
+   15. 性能优化: CSS Containment
    =================================== */
 
-article, .page-content, .site-header,
-.card, .post-card {
+article, .site-header,
+.post-list > li {
   contain: layout style;
 }
 
 /* ===================================
-   17. 加载动画 (可选)
-   =================================== */
-
-.fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.slide-up {
-  animation: slideUp 0.6s ease-out;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===================================
-   18. 打印样式优化
+   16. 打印样式优化
    =================================== */
 
 @media print {
-  .hero-section,
-  .site-nav,
-  .btn {
+  .site-nav {
     display: none;
   }
 
@@ -731,7 +454,7 @@ article, .page-content, .site-header,
     color: black;
   }
 
-  .post-card {
+  .post-list > li {
     page-break-inside: avoid;
     box-shadow: none;
     border: 1px solid #ccc;

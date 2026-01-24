@@ -1,17 +1,20 @@
 ---
 layout: page
-title: 心得体会
-permalink: /thoughts/
+title: 生活杂谈
+permalink: /life/
 ---
 
-<div class="thoughts-articles">
-  <h2>个人心得与体会</h2>
-  
-  <p>这里记录了我在学习和实践过程中的思考、体会和经验总结，分享我的成长历程和认知变化。</p>
-  
-  <div class="article-list">
-    {% for post in site.categories["心得"] %}
-    <div class="article-item">
+<div class="category-page">
+  <header class="category-header">
+    <h2>生活杂谈</h2>
+    <p>记录日常的观察与随手思考，保持对生活的敏感度。</p>
+  </header>
+
+  {% assign posts = site.categories["生活杂谈"] %}
+  {% if posts and posts.size > 0 %}
+  <div class="category-list">
+    {% for post in posts %}
+    <div class="category-item">
       <h3>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       </h3>
@@ -29,36 +32,7 @@ permalink: /thoughts/
     </div>
     {% endfor %}
   </div>
+  {% else %}
+  <p class="category-empty">暂无文章，先从最新文章开始吧。</p>
+  {% endif %}
 </div>
-
-<style>
-  .article-item {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .post-date {
-    color: #828282;
-    font-size: 0.9em;
-  }
-  
-  .post-tags {
-    margin-top: 10px;
-  }
-  
-  .tag {
-    display: inline-block;
-    background-color: #f1f1f1;
-    padding: 2px 8px;
-    margin-right: 5px;
-    border-radius: 3px;
-    font-size: 0.8em;
-  }
-  
-  .read-more {
-    display: inline-block;
-    margin-top: 8px;
-    font-weight: bold;
-  }
-</style> 

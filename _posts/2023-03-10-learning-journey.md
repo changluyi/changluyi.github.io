@@ -2,7 +2,7 @@
 layout: post
 title: "我的技术学习心得"
 date: 2023-03-10 15:30:00 +0800
-categories: 心得 学习
+categories: 生活杂谈
 tags: [成长, 方法论, 经验分享]
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "我的技术博客之旅"
 date: 2023-03-05 12:00:00 +0800
-categories: 技术 博客
+categories: 技术分享
 tags: [入门, 分享, 学习]
 ---
 
