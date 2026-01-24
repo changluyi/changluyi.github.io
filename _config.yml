@@ -39,6 +39,19 @@ plugins:
 author: 技术探索者
 lang: zh-CN
 
+# Giscus 评论配置（需要从 https://giscus.app 获取 repo_id 和 category_id）
+giscus:
+  repo: "changluyi/changluyi.github.io"
+  repo_id: "R_kgDOQ9XvQw"
+  category: "General"
+  category_id: "DIC_kwDOQ9XvQ84C1XcA"
+  mapping: pathname
+  reactions_enabled: "1"
+  emit_metadata: "0"
+  input_position: bottom
+  theme: preferred_color_scheme
+  lang: zh-CN
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
