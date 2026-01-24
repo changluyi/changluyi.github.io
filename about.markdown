@@ -6,41 +6,39 @@ permalink: /about/
 
 ## 个人简介
 
-欢迎来到我的技术博客！我是一名热爱技术的开发者，致力于不断学习和分享IT领域的知识与经验。
+35 岁的老登大头兵一枚，Kube-OVN 社区 Committer。
 
-## 专业领域
+从芯片厂商到设备厂商，再到云厂商，最后到 K8s 集成商，
+一路摸爬滚打下来，算是把计算机这一整条技术栈都趟了个遍。
+对知识（不止是技术）保持好奇心，也喜欢历史、政治、哲学，虽然我不太会聊。
 
-我主要关注以下技术领域：
-- Web开发（前端和后端技术）
-- 编程语言学习与实践
-- 软件架构与设计模式
-- 开发工具与效率提升
+## 技术经历
+
+**底层到上层的完整视角**：
+- 芯片厂商：接触过芯片软件测试
+- 设备厂商：做过嵌入式系统和网络设备
+- 云厂商：Iaas网络和虚拟化
+- K8s 集成商: 容器网络，RDMA。
+
+**当前关注领域**：
+- 云原生网络（OVN/OVS、RDMA、SR-IOV）
+- GPU 集群和高性能计算基础设施
+- 探索 AI Agent 开发和 LLM 应用
+
+## 业余时间
+- 带娃
+- 有跑步习惯
+- 在思考职业和人生的下半场
 
 ## 博客目的
-
-这个博客是我记录学习历程、分享技术见解的地方。通过写作，我希望能够：
-- 整理和巩固自己的知识
-- 与志同道合的技术爱好者交流
-- 帮助他人解决技术问题
-- 记录自己在技术道路上的成长
+- 在 AI 时代 review 自己做的事，记录思考过程
+- 做一个自己的"电子墓碑"（人会消失，但思考可以留下）
+- 寻找志同道合的人，探讨各种可能性
 
 ## 联系方式
+- GitHub: [changluyi](https://github.com/changluyi)
+- 邮箱: yichanglu123@gmail.com
 
-如果你有任何问题或想法，欢迎通过以下方式联系我：
-- GitHub: [我的GitHub主页](https://github.com/yourgithub)
-- 邮箱: your-email@example.com
+---
 
-感谢您访问我的博客！
-
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+*如果你也在思考技术转型、职业发展，或者单纯想聊聊天，欢迎联系。*
