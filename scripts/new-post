@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+usage() {
+  echo "Usage: $0 {weekly|tech|life} [title]" >&2
+  exit 1
+}
+
+if [[ $# -lt 1 ]]; then
+  usage
+fi
+
+type="$1"
+shift
+
+case "${type}" in
+  weekly)
+    template="${repo_root}/_drafts/weekly-review-template.md"
+    slug="weekly-review"
+    default_title="周报 | YYYY-MM-DD"
+    ;;
+  tech)
+    template="${repo_root}/_drafts/tech-template.md"
+    slug="tech"
+    default_title="技术分享 | YYYY-MM-DD"
+    ;;
+  life)
+    template="${repo_root}/_drafts/life-template.md"
+    slug="life"
+    default_title="生活杂谈 | YYYY-MM-DD"
+    ;;
+  *)
+    usage
+    ;;
+ esac
+
+today="$(date +%F)"
+posts_dir="${repo_root}/_posts"
+output="${posts_dir}/${today}-${slug}.md"
+
+mkdir -p "${posts_dir}"
+
+if [[ ! -f "${template}" ]]; then
+  echo "Template not found: ${template}" >&2
+  exit 1
+fi
+
+if [[ -f "${output}" ]]; then
+  echo "Post already exists: ${output}" >&2
+  exit 1
+fi
+
+content="$(sed "s/YYYY-MM-DD/${today}/g" "${template}")"
+
+if [[ $# -gt 0 ]]; then
+  title="$*"
+  content="$(printf '%s' "${content}" | sed "s#^title: \".*\"#title: \"${title}\"#")"
+else
+  content="$(printf '%s' "${content}" | sed "s#^title: \".*\"#title: \"${default_title/ YYYY-MM-DD/ ${today}}\"#")"
+fi
+
+printf '%s\n' "${content}" > "${output}"
+
+echo "Created: ${output}"
